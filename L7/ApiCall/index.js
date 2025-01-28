@@ -31,7 +31,7 @@ app.get('/blogs', (req, res) => {
     res.render('app', { blogs });
 });
 
-app.get('/blogs/new', (req, res) => {
+app.post('/blogs/new', (req, res) => {
     res.render('new', { blogs });
 });
 
