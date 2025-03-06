@@ -1,0 +1,42 @@
+<% layout('/layout/boilerplate.ejs') -%>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            <h2><%= product.name %></h2>
+            <img src="<%= product.image %>" class="img-fluid" alt="<%= product.name %>">
+            <p><strong>Price:</strong> $<%= product.price %></p>
+            <p><strong>Description:</strong> <%= product.desc %></p>
+        </div>
+
+        <div class="col-lg-6 col-sm-12">
+            <h3>Reviews</h3>
+            <% if (product.reviews.length > 0) { %>
+                <ul class="list-group">
+                    <% product.reviews.forEach(review => { %>
+                        <li class="list-group-item">
+                            <strong>Rating:</strong> <%= review.rating %>/5
+                            <br>
+                            <strong>Comment:</strong> <%= review.comment %>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p>No reviews yet. Be the first to review this product!</p>
+            <% } %>
+
+            <h4 class="mt-4">Add a Review</h4>
+            <form action="/products/<%= product._id %>/reviews" method="POST">
+                <div class="mb-3">
+                    <label for="rating" class="form-label">Rating (1-5):</label>
+                    <input type="number" name="rating" class="form-control" min="1" max="5" required>
+                </div>
+                <div class="mb-3">
+                    <label for="comment" class="form-label">Comment:</label>
+                    <textarea name="comment" class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+        </div>
+    </div>
+</div>
