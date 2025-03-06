@@ -8,10 +8,8 @@
                 <h5 class="card-title"><%= product.name %></h5>
                 <p class="card-text"><strong>Price:</strong> $<%= product.price %></p>
                 <p class="card-text"><%= product.desc %></p>
-
                 <a href="/products/<%= product._id %>" class="btn btn-primary">Show</a>
                 <a href="/products/<%= product._id %>/edit" class="btn btn-warning">Edit</a>
-
                 <form style="display: inline-block;" action="/products/<%= product._id %>?_method=DELETE" method="POST">
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
