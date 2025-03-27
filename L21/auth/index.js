@@ -17,8 +17,17 @@ app.set('view engine','ejs');
 
 app.use(express.urlencoded({extended:true}))
 
+let isLogedin = (req,res,next)=>{
+    let user = req.session.user_id;
+    if(user){
+        next()
+    }
+    else{
+        res.redirect('/login')
+    }
+}
 
-app.get('/',(req,res)=>{
+app.get('/',isLogedin,(req,res)=>{
     res.render('home')
 })
 
