@@ -7,15 +7,15 @@ router.get('/signup',(req,res)=>{
     res.render('auth/signup')
 })
 
-router.post('/signup',async (req,res)=>{
+router.post('/signup',async(req,res)=>{
     const {username,password,email,role} = req.body;
 
-    let user = new User({username,email,role});
+    console.log(req.body);
 
-    let newUser = await User.register(user,password);
+    const user = new User({username,email,role});
+    const newUser = await User.register(user,password);
 
-    newUser.save();
-
+    await newUser.save();
     res.redirect('/login')
 
 })
@@ -37,4 +37,4 @@ router.get('/logout', function(req, res, next) {
     });
 });
 
-module.exports = router;
+module.exports = router
